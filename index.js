@@ -10,7 +10,6 @@ import AuthRouter from './Routes/auth.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
-console.log(String(process.env.MONOGO_URL));
 mongoose.connect(
   process.env.MONOGO_URL,
   { useUnifiedTopology: true },
