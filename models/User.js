@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -39,7 +39,8 @@ const userSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
       defaultL: false,
-    },desc: {
+    },
+    desc: {
       type: String,
       max: 50,
     },
@@ -54,14 +55,13 @@ const userSchema = new mongoose.Schema(
     relationship: {
       type: Number,
       enum: [1, 2, 3],
-    }
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-const UserModel = mongoose.model("User", userSchema)
+const UserModel = mongoose.model('User', UserSchema);
 
 export default UserModel;
