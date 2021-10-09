@@ -8,9 +8,9 @@ import AuthRouter from './Routes/auth.js';
 import PostRouter from './Routes/posts.js';
 import cors from 'cors';
 
-app.use(cors());
 //config
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 mongoose.connect(
@@ -21,7 +21,7 @@ mongoose.connect(
     console.log('connected to DB');
   }
 );
-
+app.use(cors());
 //middleWares
 app.use(express.json());
 app.use(helmet());
