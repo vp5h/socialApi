@@ -2,10 +2,6 @@ import { Router } from 'express';
 import User from '../models/User.js';
 const UserRouter = Router();
 
-UserRouter.get('/', (req, res) => {
-  res.send('hi from users');
-});
-
 //Update User
 UserRouter.put('/:id', async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -58,7 +54,7 @@ UserRouter.get('/:id', async (req, res) => {
 });
 
 // get friends
-UserRouter.get("/friends/:userId", async (req, res) => {
+UserRouter.get('/friends/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     const friends = await Promise.all(
@@ -71,17 +67,11 @@ UserRouter.get("/friends/:userId", async (req, res) => {
       const { _id, username, profilePicture } = friend;
       friendList.push({ _id, username, profilePicture });
     });
-    res.status(200).json(friendList)
+    res.status(200).json(friendList);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
-
-
-
 
 //follow a user
 UserRouter.put('/:id/follow', async (req, res) => {
