@@ -121,7 +121,7 @@ UserRouter.put('/:id/unfollow', async (req, res) => {
 });
 
 //single user
-UserRouter.get("/", async (req, res) => {
+UserRouter.get('/', async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
   try {
@@ -135,6 +135,15 @@ UserRouter.get("/", async (req, res) => {
   }
 });
 
+//get all users
+UserRouter.get('/all/every', async (req, res) => {
+  try {
+    const alluser = await User.find({});
 
+    res.status(200).json(alluser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 export default UserRouter;
