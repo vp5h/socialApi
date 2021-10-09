@@ -6,7 +6,9 @@ import morgan from 'morgan';
 import UserRouter from './Routes/users.js';
 import AuthRouter from './Routes/auth.js';
 import PostRouter from './Routes/posts.js';
+import cors from 'cors';
 
+app.use(cors());
 //config
 dotenv.config();
 const app = express();
