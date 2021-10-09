@@ -75,9 +75,9 @@ PostRouter.get('/:id', async (req, res) => {
 
 //get timeline posts
 
-PostRouter.get('/timeline/all', async (req, res) => {
+PostRouter.get('/timeline/:userId"', async (req, res) => {
   try {
-    const current = await User.findById(req.body.userId);
+    const current = await User.findById(req.params.userId);
     const userPosts = await Post.find({ userId: current._id });
     const friendPosts = await Promise.all(
       current.following.map((friendId) => {
@@ -89,5 +89,22 @@ PostRouter.get('/timeline/all', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//get user's all posts
+
+PostRouter.get("/profile/:username", async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+      const posts = await Post.find({ userId: user._id });
+      res.status(200).json(posts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+
+
+
+
 
 export default PostRouter;
